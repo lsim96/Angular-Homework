@@ -1,0 +1,9 @@
+ul {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  gap: 10px;
+  place-content: center;
+  place-items: center;
+  padding-left: 0px;
+  list-style: none;
+}
