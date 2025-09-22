@@ -1,0 +1,19 @@
+<header class="task-header">
+  <h1><i class="fa-solid fa-list-check"></i> Task Manager</h1>
+  <div class="task-stats">
+    <strong
+      >Pending: <span class="pending-tasks">{{ pendingTasks() }}</span></strong
+    >
+    <strong
+      >Completed:
+      <span class="completed-tasks">{{ completedTasks() }}</span></strong
+    >
+    <div class="statistics-controls">
+      <app-button
+        (btnClick)="clearTasks()"
+        iconClass="fa-solid fa-broom"
+        [style]="{ backgroundColor: '#dc3545' }"
+      />
+    </div>
+  </div>
+</header>

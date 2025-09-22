@@ -1,0 +1,7 @@
+<ul>
+  @for(task of tasks(); track task.id) {
+  <li>
+    <app-task-card [task]="task" />
+  </li>
+  }
+</ul>
