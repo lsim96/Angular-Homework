@@ -2,14 +2,20 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { Job } from '../../feature/job-finder/models/jobs.model';
 import { jobsMock } from '../../feature/job-finder/job-finder.mock';
 import { Company } from '../../feature/job-finder/models/company.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class JobSeekerService {
   jobs = signal<Job[]>([]);
+  allJobsMock = signal<Job[]>([...jobsMock]);
   workTypeJobs = signal<Job[]>(jobsMock);
+
+  private router = inject(Router);
+
   selectedCompany = signal<Company>(null);
+  selectedJob = signal<Job>(null);
 
   sortDirection: 'asc' | 'desc' = 'desc';
 
@@ -66,6 +72,15 @@ export class JobSeekerService {
     this.jobs.set(filteredJobs);
   }
 
+  jobDetails(id: number): Job {
+    const job = this.jobs().find((job) => job.id === id);
+    if (!job) return undefined;
+
+    this.selectedJob.set(job);
+    console.log(job);
+    return job;
+  }
+
   companyDetails(id: number): Company | undefined {
     const job = this.jobs().find((job) => job.id === id);
 
@@ -89,6 +104,32 @@ export class JobSeekerService {
     if (this.selectedCompany()) return;
 
     this.companyDetails(id);
+  }
+
+  addJob(job: Job) {
+    [this.allJobsMock, this.jobs].forEach((store) =>
+      store.update((jobs) => [...jobs, job])
+    );
+    jobsMock.push(job);
+    this.router.navigate(['/jobs']);
+  }
+
+  updateJob(updatedJob: Job) {
+    const updateFn = (list: Job[]) =>
+      list.map((job) =>
+        job.id === updatedJob.id ? { ...job, ...updatedJob } : job
+      );
+
+    [this.allJobsMock, this.jobs].forEach((store) => store.update(updateFn));
+
+    const index = jobsMock.findIndex((i) => i.id === Number(updatedJob.id));
+    if (index !== -1) {
+      jobsMock[index] = { ...jobsMock[index], ...updatedJob };
+    } else {
+      console.log('Not found');
+    }
+
+    this.router.navigate(['/jobs']);
   }
 
   totalJobs = computed(

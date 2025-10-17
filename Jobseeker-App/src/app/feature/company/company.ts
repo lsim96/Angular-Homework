@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { JobSeekerService } from '../../../core/services/job-seeker-service';
+import { JobSeekerService } from '../../core/services/job-seeker-service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

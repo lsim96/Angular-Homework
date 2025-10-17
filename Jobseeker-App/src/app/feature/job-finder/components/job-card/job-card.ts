@@ -23,7 +23,11 @@ export class JobCard {
 
   onJobApply() {
     this.jobSeekerService.applyForJob(this.job().id);
-    console.log(this.job());
+  }
+
+  onEditClick() {
+    this.jobSeekerService.jobDetails(this.job().id);
+    this.router.navigate(['/edit-job']);
   }
 
   onLogoClick() {
