@@ -2,17 +2,17 @@
   <form [formGroup]="jobForm" (ngSubmit)="onSubmit()">
     <div>
       <label>Company Name</label>
-      <input formControlName="companyName" />
+      <input formControlName="companyName" placeholder="Name of the company" />
     </div>
 
     <div>
       <label>Company Logo</label>
-      <input formControlName="companyLogo" />
+      <input formControlName="companyLogo" placeholder="Company logo" />
     </div>
 
     <div>
       <label>Position</label>
-      <input formControlName="position" />
+      <input formControlName="position" placeholder="Job position" />
     </div>
 
     <div>
@@ -36,39 +36,58 @@
 
     <div>
       <label>Location</label>
-      <input formControlName="location" />
+      <input formControlName="location" placeholder="Job Location" />
     </div>
 
     <div>
       <label>Country</label>
-      <input formControlName="country" />
+      <input formControlName="country" placeholder="United States" />
     </div>
 
     <div>
       <label>Qualifications</label>
-      <input formControlName="qualifications" />
+      <textarea
+        rows="5"
+        formControlName="qualifications"
+        placeholder="Qualities required from the job applicants..."
+      ></textarea>
     </div>
 
     <div>
       <label>Description</label>
-      <input formControlName="description" />
+      <textarea
+        rows="5"
+        formControlName="description"
+        placeholder="Explaning the daily duties..."
+      ></textarea>
     </div>
 
     <div>
       <label>Company Address</label>
-      <input formControlName="companyAddress" />
+      <input
+        formControlName="companyAddress"
+        placeholder="Address of the company"
+      />
     </div>
 
     <div>
       <label>Company Industry</label>
-      <input formControlName="companyIndustry" />
+      <input
+        formControlName="companyIndustry"
+        placeholder="Industry that the company specializes in..."
+      />
     </div>
 
     <div>
       <label>Company Website</label>
-      <input formControlName="companyWebsite" />
+      <input
+        formControlName="companyWebsite"
+        placeholder="Website of the company"
+      />
     </div>
 
-    <button type="submit" [disabled]="jobForm.invalid">Add Job</button>
+    <button type="submit" [disabled]="jobForm.invalid">
+      @if (editJob()) {Edit Job} @else {Add job}
+    </button>
   </form>
 </div>

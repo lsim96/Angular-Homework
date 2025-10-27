@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact-form',
@@ -15,6 +15,8 @@ import {
 })
 export class ContactForm {
   contactForm = this.generateForm();
+
+  router = inject(Router);
 
   generateForm() {
     return new FormGroup({
@@ -36,12 +38,13 @@ export class ContactForm {
       }),
       message: new FormControl('', {
         nonNullable: true,
-        validators: [Validators.required],
+        validators: [Validators.required, Validators.maxLength(120)],
       }),
     });
   }
 
   onSubmit() {
     this.contactForm.reset();
+    this.router.navigate(['/']);
   }
 }

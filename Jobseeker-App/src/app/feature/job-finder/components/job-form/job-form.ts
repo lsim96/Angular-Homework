@@ -64,11 +64,11 @@ export class JobForm {
       }),
       qualifications: new FormControl('', {
         nonNullable: true,
-        validators: [Validators.required],
+        validators: [Validators.required, Validators.maxLength(150)],
       }),
       description: new FormControl('', {
         nonNullable: true,
-        validators: [Validators.required],
+        validators: [Validators.required, Validators.maxLength(150)],
       }),
       isApplied: new FormControl(false, {
         validators: [Validators.required],

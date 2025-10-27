@@ -2,17 +2,17 @@
   <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
     <div>
       <label>First Name</label>
-      <input formControlName="firstName" />
+      <input formControlName="firstName" placeholder="First Name" />
     </div>
 
     <div>
       <label>Last Name</label>
-      <input formControlName="lastName" />
+      <input formControlName="lastName" placeholder="Last Name" />
     </div>
 
     <div>
       <label>Email</label>
-      <input formControlName="email" />
+      <input formControlName="email" placeholder="Email address" />
     </div>
 
     <div>
@@ -22,7 +22,11 @@
 
     <div>
       <label>Message</label>
-      <input formControlName="message" />
+      <textarea
+        rows="5"
+        formControlName="message"
+        placeholder="Type your message..."
+      ></textarea>
     </div>
 
     <button type="submit" [disabled]="contactForm.invalid">Submit</button>
